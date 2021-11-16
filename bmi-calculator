@@ -2,7 +2,7 @@
 
 #Find a number for BMI and display difference from normal weight - not very great code, but it should get the job done.
 def calcBMI(weight,height):
-  BMI = (weight/height**2)*703
+    BMI = (weight/height**2)*703
     if BMI < 18.5: 
       classifyBMI = "Underweight"
       lbs = int((18.5 - BMI)*(height**2)/703)
@@ -17,5 +17,7 @@ def calcBMI(weight,height):
     else: 
       classifyBMI = "Overweight & Underheight"
       lbs = int((BMI - 30)*(height**2)/703)
-      print(classifyBMI," by ", lbs, " lbs")
-    
+      print(classifyBMI," by ", lbs, " psi")
+h = float(input("height (in.)"))
+w = float(input("weight (lbs.)"))
+calcBMI(w,h)
