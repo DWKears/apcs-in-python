@@ -1,0 +1,15 @@
+#Simple program to calculate wavelength and energy ov a photon with a given frequency
+def Freq2WavelengthNEnergy(freq):
+    
+    #Useful constants
+    h = 6.62 * 10 ** -34
+    c = 3.00 * 10 ** 8
+    
+    #Calculating values
+    length = c / freq
+    energy = h * freq
+    
+    return [length,energy]
+
+#Input parameters here 
+print(Freq2WavelengthNEnergy()) 
