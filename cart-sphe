@@ -1,17 +1,22 @@
 #Simple tool to convert spherical coordinates to catresian coordinates
 import numpy as np
 
-def spherical2cartesian(r,theta,phi,angle = 'radians'): 
+def spherical2cartesian(r, theta, phi = None, angle = 'radians'): 
     #inputs are numbers, theta=0 aligns with x-axis, phi=0 alligns with z-axis
     if angle == 'degrees':
         theta *= 2*np.pi/360
-        phi *= 2*np.pi/360
+        if isinstance(phi,float):
+            phi *= 2*np.pi/360
     elif angle == 'revolutions' or angle == 'tauradians':
         theta *= 2*np.pi
-        phi*= 2*np.pi
+        if isinstance(phi,float):
+            phi*= 2*np.pi
     elif angle == 'piradians':
         theta *= np.pi
-        phi*= np.pi
+        if isinstance(phi,float):
+            phi*= np.pi
+    if phi == None:
+        phi = np.pi/2
         
     z = r*np.cos(phi)
     xpy = r*np.sin(phi)
@@ -23,20 +28,20 @@ def spherical2cartesian(r,theta,phi,angle = 'radians'):
     
     
     #Converding cartesian coordinates to spherical
-    def cartesian2spherical(x,y,z,angle = 'radians'):
+def cartesian2spherical(x,y,z,angle = 'radians'):
     
     r = np.sqrt(x**2 + y**2 + z**2)
     phi = np.arccos(z/r)
     theta = np.arctan(y/x)
     
     if angle == 'degrees':
-        theta *= 2*np.pi/360
-        phi *= 2*np.pi/360
+        theta *= 360/(2*np.pi)
+        phi *= 360/(2*np.pi)
     elif angle == 'revolutions' or angle == 'tauradians':
-        theta *= 2*np.pi
-        phi*= 2*np.pi
+        theta *= 1/(2*np.pi)
+        phi*= 1/(2*np.pi)
     elif angle == 'piradians':
-        theta *= np.pi
-        phi*= np.pi
+        theta *= 1/(np.pi)
+        phi*= 1/(np.pi)
     
     return [r,theta,phi]
