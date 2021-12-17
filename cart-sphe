@@ -31,8 +31,14 @@ def spherical2cartesian(r, theta, phi = None, angle = 'radians'):
 def cartesian2spherical(x,y,z,angle = 'radians'):
     
     r = np.sqrt(x**2 + y**2 + z**2)
-    phi = np.arccos(z/r)
-    theta = np.arctan(y/x)
+    if r == 0:
+        phi = 'undetermined'
+    else:
+        phi = np.arccos(z/r)
+    if x == 0:
+        theta = 'undetermined'
+    else:
+        theta = np.arctan(y/x)
     
     if angle == 'degrees':
         theta *= 360/(2*np.pi)
