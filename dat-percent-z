@@ -1,0 +1,22 @@
+import scipy.stats as st
+
+#Converts data or z-score to percentage
+def dat2npcent(dat,mean = 0,stdev = 1,tailed = True):
+    z = (dat-mean)/stdev
+    if tailed:  #Determines percentile of z-score
+        percent = st.norm.cdf(z)
+    else:             #Determines symmetrical interval boardered by z-score
+        percent = st.norm.cdf(abs(z)) - st.norm.cdf(-abs(z))
+    return percent
+    
+    
+    #Converts percentage to z-score or data point
+def npcent2dat(percent,mean = 0,stdev = 1,tailed = True):
+    if tailed:
+        z = st.norm.ppf(percent)
+    else:
+        z = st.norm.ppf((1+percent)/2)
+        zl = st.norm.ppf((1-percent)/2) #Would return the z-score for the lower end
+    dat = z*stdev + mean
+    return(dat)
+        
