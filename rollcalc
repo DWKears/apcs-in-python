@@ -1,0 +1,28 @@
+def avRoll(die = 20, adv = 0, mod = 0, n = 1):
+    #If advantage
+    if adv > 0:
+        k = adv + 1
+        unmodified_av = avMax(die,k)
+        
+    #If no advantage or disadvantage
+    else:
+        k = -adv + 1
+        unmodified_av = avMin(die,k)
+    
+    av_modified = n*unmodified_av + mod
+    return av_modified 
+    
+    
+def avMax(N,k):
+    list = [r + 1 for r in range(N)]
+    return sum([ s*(s**k-(s-1)**k)/(N**k) for s in list])
+
+def avMin(N,k):
+    list = [r + 1 for r in range(N)]
+    return sum([ (N-s+1)*(s**k-(s-1)**k)/(N**k) for s in list])
+
+
+
+
+
+
