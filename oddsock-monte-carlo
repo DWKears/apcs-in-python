@@ -1,0 +1,20 @@
+import numpy as np
+def oddsock(socks, cycles = 1, trials = 1000)
+
+
+
+def oddsock(pairs,n = 100):
+    sumpairs = 0
+    for k in range(n):
+        socks = list(range(pairs))
+        socks = socks + socks
+        selected = []
+        for i in range(pairs):
+            choice = np.random.randint(0,len(socks))
+            selected.append(socks[choice])
+            del(socks[choice])
+        #print(selected)
+        #print(set(selected))
+        newpairs = len(selected) - len(set(selected))
+        sumpairs += newpairs
+    return sumpairs/n
