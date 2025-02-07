@@ -1,0 +1,25 @@
+#Imulating one game
+import numpy as np                   #Setting up modules and parameters
+def easyGame():
+    space = 0                                 #how far forward (out of 14)
+    turns = 0                                 #how many turns have passed
+    playing = True                            #used to see when the game ends
+    outcomes = [-1,2,-2,4,-3,6]               #possible roll results
+    while playing:                       #Simulating a game
+        turns += 1                            #counts the turn
+        roll = outcomes[np.random.randint(6)] #selects a random roll result
+        space += roll                         #move forward or backward
+        if space > 13:
+            playing = False                   #the game ends if 14+ is reached
+        elif space < 0:
+            space = 0                         #back to start
+    return(turns)
+
+#SIMULATING MANY GAMES
+import numpy as np                   #Setting up modules and parameters
+n = 1000                                     #how many times to run the simulation
+total = 0                                    #starting the total turn count
+for  i in range(n):
+    total += easyGame()
+print(total/n)
+    
